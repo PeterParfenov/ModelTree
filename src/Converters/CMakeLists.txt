@@ -1,0 +1,2 @@
+add_executable(urqmd2tc urqmd2tc.cxx)
+target_link_libraries(urqmd2tc ModelTree)
