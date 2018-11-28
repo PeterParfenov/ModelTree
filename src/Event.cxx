@@ -48,13 +48,14 @@ Event::~Event()
 /// is called. If tracks[i] is 0, a new Track object will be created
 /// otherwise the previous Track[i] will be overwritten.
 
-Track *Event::AddTrack(Int_t pdg, Float_t px, Float_t py, Float_t pz,
-                       Float16_t mass, Double32_t charge,
-                       Double32_t vx, Double32_t vy, Double32_t vz, Float_t ptmin)
+Track *Event::AddTrack(Int_t pdg, Double32_t E, Double32_t px, Double32_t py, Double32_t pz,
+                       Float16_t mass, Int_t baryon, Int_t strange, Int_t charge,
+                       Double32_t t, Double32_t vx, Double32_t vy, Double32_t vz,
+                       Double32_t tform, Int_t diag1, Int_t diag2, Float_t ptmin)
 {
 #if ROOT_VERSION_CODE >= ROOT_VERSION(5, 32, 0)
    Track *track = (Track *)fTracks->ConstructedAt(fNtrack++);
-   track->Set(pdg, px, py, pz, mass, charge, vx, vy, vz);
+   track->Set(pdg, E, px, py, pz, mass, baryon, strange, charge, t, vx, vy, vz, tform, diag1, diag2);
 #else
    TClonesArray &tracks = *fTracks;
    Track *track = new (tracks[fNtrack++]) Track(pdg, px, py, pz, mass, charge, vx, vy, vz);

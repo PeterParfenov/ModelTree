@@ -43,9 +43,8 @@ int main(int argc, char **argv)
 
   Double_t B, PsiRP, Time,
       r0, rx, ry, rz, p0, px, py, pz,
-      m, ityp, i3, ichg, baryon, strange, dump;
-  Int_t Nev, Npart, count,
-      pid;
+      m, ityp, i3, ichg, baryon, strange, tform, dump;
+  Int_t Nev, Npart, count, diag1, diag2, pid;
 
   //  const Int_t count1 = 3, count2 = 12;
   const Double_t minPt = 0.2;
@@ -231,10 +230,10 @@ int main(int argc, char **argv)
       getline(isTrack, str1);
       ss1 << str1;
       if (str1 == "") break;
-      ss1 >> r0 >> rx >> ry >> rz >> p0 >> px >> py >> pz >> m >> ityp >> i3 >> baryon >> strange >> ichg 
-      >> dump >> dump >> dump >> dump >> dump >> dump;
+      ss1 >> r0 >> rx >> ry >> rz >> p0 >> px >> py >> pz >> m >> ityp >> diag1 >> baryon >> strange >> ichg 
+      >> tform >> dump >> dump >> dump >> diag2 >> dump;
       pid = (particleQGSM.find(TMath::Abs(ityp)) != particleQGSM.end()) ? TMath::Sign(particleQGSM.at(TMath::Abs(ityp)), ichg) : -999.;
-      event->AddTrack(pid, px, py, pz, m, ichg, rx, ry, rz, minPt);
+      event->AddTrack(pid, p0, px, py, pz, m, baryon, strange, ichg,r0, rx, ry, rz, tform, diag1, diag2, minPt);
     }
 
     //Restore Object count
