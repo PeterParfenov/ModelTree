@@ -19,8 +19,10 @@ private:
   Int_t fDiag1;
   Int_t fDiag2;
   Double32_t fTform;
+  Double32_t fTformParent;
   Double32_t fVertex[4]; 
   Double32_t fVal[4];
+  Double32_t fRes[3]; //Resonance coordinates
   TBits fTriggerBits; //Bits triggered by this track.
 
 public:
