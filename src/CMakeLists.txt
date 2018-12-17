@@ -16,6 +16,7 @@ include(${ROOT_USE_FILE})
 set(INCLUDE_DIRECTORIES
   ${CMAKE_SOURCE_DIR}
   ${CMAKE_SOURCE_DIR}/Converters
+  ${CMAKE_SOURCE_DIR}/EventSelector
   ${CMAKE_SOURCE_DIR}/macros
   ${ROOT_INCLUDE_DIRS}
 )
@@ -54,4 +55,5 @@ G__ModelTree.cxx)
 target_link_libraries(ModelTree ${ROOT_LIBRARIES})
 
 add_subdirectory(Converters)
+add_subdirectory(EventSelector)
 add_subdirectory(macros)
