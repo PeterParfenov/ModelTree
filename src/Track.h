@@ -31,14 +31,16 @@ public:
   Track(Int_t pdg, Double32_t E, Double32_t px, Double32_t py, Double32_t pz,
         Float16_t mass, Int_t baryon, Int_t strange, Int_t charge,
         Double32_t t, Double32_t vx, Double32_t vy, Double32_t vz,
-        Double32_t tform, Int_t diag1, Int_t diag2);
+        Double32_t tform, Double32_t resx, Double32_t resy, Double32_t rexz,
+        Int_t diag1, Int_t diag2);
   virtual ~Track() { Clear(); }
   Track &operator=(const Track &orig);
 
   void Set(Int_t pdg, Double32_t E, Double32_t px, Double32_t py, Double32_t pz,
            Float16_t mass, Int_t baryon, Int_t strange, Int_t charge,
            Double32_t t, Double32_t vx, Double32_t vy, Double32_t vz,
-           Double32_t tform, Int_t diag1, Int_t diag2);
+           Double32_t tform, Double32_t resx, Double32_t resy, Double32_t rexz,
+           Int_t diag1, Int_t diag2);
   void Clear(Option_t *option = "");
   void Print(Option_t *option = "");
 
@@ -61,6 +63,12 @@ public:
       fVertex[i] = a;
   }
 
+  void SetVal(Int_t i, Double32_t a)
+  {
+    if (i < 4)
+      fVal[i] = a;
+  }
+  
   Int_t GetPdg() const { return fPdg; }
   Float_t GetPvect(Int_t i) const { return (i < 4) ? fPvect[i] : 0; }
   Float_t GetPt() const { return TMath::Sqrt(fPvect[1] * fPvect[1] + fPvect[2] * fPvect[2]); }
@@ -72,6 +80,7 @@ public:
   Int_t GetDiag2() const { return fDiag2; }
   Double32_t GetTform() const { return fTform; }
   Double32_t GetVertex(Int_t i = 0) { return (i < 4) ? fVertex[i] : 0; }
+  Double32_t GetVal(Int_t i = 0) { return (i < 4) ? fVal[i] : 0; }
   TBits &GetTriggerBits() { return fTriggerBits; }
 
   ClassDef(Track, 2) //A track segment

@@ -24,6 +24,11 @@ Track::Track(const Track &orig) : TObject(orig), fTriggerBits(orig.fTriggerBits)
   fVertex[1] = orig.fVertex[1];
   fVertex[2] = orig.fVertex[2];
   fVertex[3] = orig.fVertex[3];
+  
+  fVal[0] = orig.fVal[0];
+  fVal[1] = orig.fVal[1];
+  fVal[2] = orig.fVal[2];
+  fVal[3] = orig.fVal[3];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -32,9 +37,10 @@ Track::Track(const Track &orig) : TObject(orig), fTriggerBits(orig.fTriggerBits)
 Track::Track(Int_t pdg, Double32_t E, Double32_t px, Double32_t py, Double32_t pz,
              Float16_t mass, Int_t baryon, Int_t strange, Int_t charge,
              Double32_t t, Double32_t vx, Double32_t vy, Double32_t vz,
-             Double32_t tform, Int_t diag1, Int_t diag2)
+             Double32_t tform, Double32_t resx, Double32_t resy, Double32_t resz,
+             Int_t diag1, Int_t diag2)
 {
-  Set(pdg, E, px, py, pz, mass, baryon, strange, charge, t, vx, vy, vz, tform, diag1, diag2);
+  Set(pdg, E, px, py, pz, mass, baryon, strange, charge, t, vx, vy, vz, tform, resx, resy, resz, diag1, diag2);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -60,6 +66,11 @@ Track &Track::operator=(const Track &orig)
   fVertex[1] = orig.fVertex[1];
   fVertex[2] = orig.fVertex[2];
   fVertex[3] = orig.fVertex[3];
+  
+  fVal[0] = orig.fVal[0];
+  fVal[1] = orig.fVal[1];
+  fVal[2] = orig.fVal[2];
+  fVal[3] = orig.fVal[3];
 
   fTriggerBits = orig.fTriggerBits;
 
@@ -82,7 +93,8 @@ void Track::Clear(Option_t * /*option*/)
 void Track::Set(Int_t pdg, Double32_t E, Double32_t px, Double32_t py, Double32_t pz,
                 Float16_t mass, Int_t baryon, Int_t strange, Int_t charge,
                 Double32_t t, Double32_t vx, Double32_t vy, Double32_t vz,
-                Double32_t tform, Int_t diag1, Int_t diag2)
+                Double32_t tform, Double32_t resx, Double32_t resy, Double32_t resz,
+                Int_t diag1, Int_t diag2)
 {
   fPdg = pdg;
   fPvect[0] = E;
@@ -101,6 +113,11 @@ void Track::Set(Int_t pdg, Double32_t E, Double32_t px, Double32_t py, Double32_
   fVertex[1] = vx;
   fVertex[2] = vy;
   fVertex[3] = vz;
+
+  fVal[0] = 0.;
+  fVal[1] = resx;
+  fVal[2] = resy;
+  fVal[3] = resz;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -52,7 +52,8 @@ public:
   Track *AddTrack(Int_t pdg, Double32_t E, Double32_t px, Double32_t py, Double32_t pz,
                   Float16_t mass, Int_t baryon, Int_t strange, Int_t charge,
                   Double32_t t, Double32_t vx, Double32_t vy, Double32_t vz,
-                  Double32_t tform, Int_t diag1, Int_t diag2, Float_t ptmin);
+                  Double32_t tform, Double32_t resx, Double32_t resy, Double32_t resz,
+                  Int_t diag1, Int_t diag2, Float_t ptmin);
 
   Track *GetTrack(Int_t i) const { return ((Track *)fTracks->UncheckedAt(i)); }
   Int_t GetNtrack() const { return fNtrack; }

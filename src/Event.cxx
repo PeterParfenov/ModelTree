@@ -51,14 +51,15 @@ Event::~Event()
 Track *Event::AddTrack(Int_t pdg, Double32_t E, Double32_t px, Double32_t py, Double32_t pz,
                        Float16_t mass, Int_t baryon, Int_t strange, Int_t charge,
                        Double32_t t, Double32_t vx, Double32_t vy, Double32_t vz,
-                       Double32_t tform, Int_t diag1, Int_t diag2, Float_t ptmin)
+                       Double32_t tform, Double32_t resx, Double32_t resy, Double_t resz,
+                       Int_t diag1, Int_t diag2, Float_t ptmin)
 {
 #if ROOT_VERSION_CODE >= ROOT_VERSION(5, 32, 0)
    Track *track = (Track *)fTracks->ConstructedAt(fNtrack++);
-   track->Set(pdg, E, px, py, pz, mass, baryon, strange, charge, t, vx, vy, vz, tform, diag1, diag2);
+   track->Set(pdg, E, px, py, pz, mass, baryon, strange, charge, t, vx, vy, vz, tform, resx, resy, resz, diag1, diag2);
 #else
    TClonesArray &tracks = *fTracks;
-   Track *track = new (tracks[fNtrack++]) Track(pdg, px, py, pz, mass, charge, vx, vy, vz);
+   Track *track = new (tracks[fNtrack++]) Track(pdg, px, py, pz, mass, charge, vx, vy, vz, tform, resx, resy, resz, diag1, diag2);
 #endif
    //Save reference to last Track in the collection of Tracks
    fLastTrack = track;

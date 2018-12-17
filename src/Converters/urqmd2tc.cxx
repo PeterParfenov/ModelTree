@@ -43,7 +43,7 @@ int main(int argc, char **argv)
 
    Double_t B, PsiRP, Time,
        r0, rx, ry, rz, p0, px, py, pz,
-       m, ityp, i3, ichg, ncl, lcl, orr;
+       m, ityp, i3, ichg, ncl, lcl, orr, dump;
    Int_t Nev, Npart, count,
        pid;
 
@@ -240,9 +240,10 @@ int main(int argc, char **argv)
          ss.clear();
          getline(is, str);
          ss << str;
-         ss >> r0 >> rx >> ry >> rz >> p0 >> px >> py >> pz >> m >> ityp >> i3 >> ichg >> lcl >> ncl >> orr;
+         // ss >> r0 >> rx >> ry >> rz >> p0 >> px >> py >> pz >> m >> ityp >> i3 >> ichg >> lcl >> ncl >> orr;
+         ss >> r0 >> rx >> ry >> rz >> p0 >> px >> py >> pz >> m >> ityp >> i3 >> ichg >> dump >> dump >> dump >> dump >> dump >> dump;
          pid = (particleURQMD.find(TMath::Abs(ityp)) != particleURQMD.end()) ? TMath::Sign(particleURQMD.at(TMath::Abs(ityp)), ichg) : -999.;
-         event->AddTrack(pid, p0, px, py, pz, m,0,0, ichg,r0, rx, ry, rz,0,0,0, minPt);
+         event->AddTrack(pid, p0, px, py, pz, m,0,0, ichg,r0, rx, ry, rz,0,0,0,0,0,0, minPt);
       }
       //Restore Object count
       //To save space in the table keeping track of all referenced objects

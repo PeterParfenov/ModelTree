@@ -43,7 +43,8 @@ int main(int argc, char **argv)
 
   Double_t B, PsiRP, Time,
       r0, rx, ry, rz, p0, px, py, pz,
-      m, ityp, i3, ichg, baryon, strange, tform, dump;
+      m, ityp, i3, ichg, baryon, strange, tform,
+      resx, resy, resz, dump;
   Int_t Nev, Npart, count, diag1, diag2, pid;
 
   //  const Int_t count1 = 3, count2 = 12;
@@ -231,9 +232,9 @@ int main(int argc, char **argv)
       ss1 << str1;
       if (str1 == "") break;
       ss1 >> r0 >> rx >> ry >> rz >> p0 >> px >> py >> pz >> m >> ityp >> diag1 >> baryon >> strange >> ichg 
-      >> tform >> dump >> dump >> dump >> diag2 >> dump;
+      >> tform >> resx >> resy >> resz >> diag2 >> dump;
       pid = (particleQGSM.find(TMath::Abs(ityp)) != particleQGSM.end()) ? TMath::Sign(particleQGSM.at(TMath::Abs(ityp)), ichg) : -999.;
-      event->AddTrack(pid, p0, px, py, pz, m, baryon, strange, ichg,r0, rx, ry, rz, tform, diag1, diag2, minPt);
+      event->AddTrack(pid, p0, px, py, pz, m, baryon, strange, ichg,r0, rx, ry, rz, tform, resx, resy, resz, diag1, diag2, minPt);
     }
 
     //Restore Object count
